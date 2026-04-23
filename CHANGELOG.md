@@ -1,3 +1,10 @@
+# 1.0.0 (2026-04-23)
+
+
+### Features
+
+* **youtube:** remember playback position across playlists and autoplay queues ([1c9d28a](https://github.com/lfnincao/revanced-patches-main/commit/1c9d28a4b730caa9610212bd2ffcf62199bae8c7))
+
 # [6.1.0](https://github.com/ReVanced/revanced-patches/compare/v6.0.1...v6.1.0) (2026-03-18)
 
 
