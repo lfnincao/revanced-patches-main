@@ -1645,6 +1645,11 @@ Tap here to learn more about DeArrow"</string>
             <string name="revanced_loop_video_summary_on">Video will loop</string>
             <string name="revanced_loop_video_summary_off">Video will not loop</string>
         </patch>
+        <patch id="misc.playbackposition.rememberPlaybackPositionPatch">
+            <string name="revanced_remember_playback_position_title">Remember playback position</string>
+            <string name="revanced_remember_playback_position_summary_on">Videos resume where you left off, even when they auto-advance in a playlist</string>
+            <string name="revanced_remember_playback_position_summary_off">Videos in playlists and autoplay queues may restart from the beginning</string>
+        </patch>
         <patch id="misc.loopvideo.button.loopVideoButtonPatch">
             <string name="revanced_loop_video_button_title">Show loop video button</string>
             <string name="revanced_loop_video_button_summary_on">Button is shown</string>
