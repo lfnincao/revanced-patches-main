@@ -62,3 +62,43 @@ jobs:
         with:
           subject-name: 'ReVanced Patches ${{ steps.release.outputs.new_release_git_tag }}'
           subject-path: patches/build/libs/patches-*.rvp
+
+      - name: Publish bundle JSON
+        if: steps.release.outputs.new_release_published == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          TAG: ${{ steps.release.outputs.new_release_git_tag }}
+          VERSION: ${{ steps.release.outputs.new_release_version }}
+          NOTES: ${{ steps.release.outputs.new_release_notes }}
+        run: |
+          set -euo pipefail
+
+          mkdir -p out
+          cat > out/patches-bundle.json <<EOF
+          {
+            "created_at": "$(date -u +%Y-%m-%dT%H:%M:%S)",
+            "description": $(jq -Rs . <<< "$NOTES"),
+            "download_url": "https://github.com/${REPO}/releases/download/${TAG}/patches-${VERSION}.rvp",
+            "signature_download_url": "N/A",
+            "version": "${TAG}"
+          }
+          EOF
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin bundles || true
+          if git show-ref --verify --quiet refs/remotes/origin/bundles; then
+            git checkout bundles
+          else
+            git checkout --orphan bundles
+            git rm -rf . >/dev/null 2>&1 || true
+          fi
+
+          mkdir -p patch-bundles
+          mv -f out/patches-bundle.json patch-bundles/patches-bundle.json
+
+          git add patch-bundles/patches-bundle.json
+          git commit -m "chore: publish bundle metadata for ${TAG}" || echo "Nothing to commit"
+          git push origin bundles
