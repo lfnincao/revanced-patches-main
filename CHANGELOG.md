@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/lfnincao/revanced-patches-main/compare/v1.0.0...v1.0.1) (2026-04-23)
+
+
+### Bug Fixes
+
+* **build:** disable maven signing and use fork's package registry ([d15bc34](https://github.com/lfnincao/revanced-patches-main/commit/d15bc34f1d2d2b94730905ba5580ef5bb2de3d64))
+
 # 1.0.0 (2026-04-23)
 
 
