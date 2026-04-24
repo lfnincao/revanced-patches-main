@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/lfnincao/revanced-patches-main/compare/v1.0.1...v1.1.0) (2026-04-24)
+
+
+### Features
+
+* **youtube:** add server resume offset handling for playback position ([eccec16](https://github.com/lfnincao/revanced-patches-main/commit/eccec16caedc07c6d8cf81ab600371ddfbe55381))
+
 ## [1.0.1](https://github.com/lfnincao/revanced-patches-main/compare/v1.0.0...v1.0.1) (2026-04-23)
 
 
