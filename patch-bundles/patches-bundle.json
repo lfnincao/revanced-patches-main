@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-04-23T22:56:20",
-  "description": "## [1.0.1](https://github.com/lfnincao/revanced-patches-main/compare/v1.0.0...v1.0.1) (2026-04-23)\n\n\n### Bug Fixes\n\n* **build:** disable maven signing and use fork's package registry ([d15bc34](https://github.com/lfnincao/revanced-patches-main/commit/d15bc34f1d2d2b94730905ba5580ef5bb2de3d64))\n\n\n\n\n",
-  "download_url": "https://github.com/lfnincao/revanced-patches-main/releases/download/v1.0.1/patches-1.0.1.rvp",
+  "created_at": "2026-04-24T00:32:41",
+  "description": "# [1.1.0](https://github.com/lfnincao/revanced-patches-main/compare/v1.0.1...v1.1.0) (2026-04-24)\n\n\n### Features\n\n* **youtube:** add server resume offset handling for playback position ([eccec16](https://github.com/lfnincao/revanced-patches-main/commit/eccec16caedc07c6d8cf81ab600371ddfbe55381))\n\n\n\n\n",
+  "download_url": "https://github.com/lfnincao/revanced-patches-main/releases/download/v1.1.0/patches-1.1.0.rvp",
   "signature_download_url": "N/A",
-  "version": "v1.0.1"
+  "version": "v1.1.0"
 }
