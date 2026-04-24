@@ -2,6 +2,9 @@ package app.revanced.extension.youtube.patches;
 
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import app.revanced.extension.shared.Logger;
 import app.revanced.extension.shared.settings.preference.SharedPrefCategory;
 import app.revanced.extension.youtube.settings.Settings;
@@ -136,6 +139,50 @@ public final class RememberPlaybackPositionPatch {
             PREFS.preferences.edit().remove(KEY_PREFIX + videoId).apply();
         } catch (Exception ex) {
             Logger.printException(() -> "Failed to clear playback position for " + videoId, ex);
+        }
+    }
+
+    /**
+     * Injection point. Called from the YouTube player-parameter builder. The last parameter is a
+     * desugared {@code j$.time.Duration} for where watch history says playback should start (e.g. after
+     * watching on another device). That value is read-only; we merge it into the same local store as
+     * {@link #setVideoTime(long)} so auto-advance can resume consistently.
+     */
+    public static void onServerResumeOffset(
+            @NonNull String videoId, @Nullable String playerParams, @Nullable Object duration) {
+        try {
+            if (!Settings.REMEMBER_PLAYBACK_POSITION.get()) {
+                return;
+            }
+            if (videoId.isEmpty() || playerParams == null) {
+                return;
+            }
+            if (VideoInformation.playerParametersAreShort(playerParams)) {
+                return;
+            }
+            if (duration == null) {
+                return;
+            }
+            final long serverMs;
+            try {
+                serverMs = (long) duration.getClass().getMethod("toMillis").invoke(duration);
+            } catch (Exception e) {
+                return;
+            }
+            if (serverMs < MIN_PROGRESS_MS) {
+                return;
+            }
+            final long stored = loadPosition(videoId);
+            final long merged = Math.max(stored, serverMs);
+            if (merged == stored) {
+                return;
+            }
+            savePosition(videoId, merged);
+            Logger.printDebug(
+                    () -> "Merged server resume hint for " + videoId + " to " + merged + "ms");
+        } catch (Exception ex) {
+            Logger.printException(
+                    () -> "RememberPlaybackPositionPatch.onServerResumeOffset failure", ex);
         }
     }
 }
