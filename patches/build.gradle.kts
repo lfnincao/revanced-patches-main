@@ -35,10 +35,15 @@ publishing {
     repositories {
         maven {
             name = "githubPackages"
-            url = uri("https://maven.pkg.github.com/revanced/revanced-patches")
+            url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY") ?: "revanced/revanced-patches"}")
             credentials(PasswordCredentials::class)
         }
     }
+}
+
+// Personal fork: skip GPG signing of the Maven publication.
+tasks.withType<org.gradle.plugins.signing.Sign>().configureEach {
+    enabled = false
 }
 
 apply(from = "strings-processing.gradle.kts")
