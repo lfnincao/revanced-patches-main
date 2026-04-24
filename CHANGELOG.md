@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/lfnincao/revanced-patches-main/compare/v1.1.0...v1.2.0) (2026-04-24)
+
+
+### Features
+
+* **youtube:** reverting broken serverside remember playback feature ([6deff63](https://github.com/lfnincao/revanced-patches-main/commit/6deff63dabde12f8c5c44e51723151fec5e33796))
+
 # [1.1.0](https://github.com/lfnincao/revanced-patches-main/compare/v1.0.1...v1.1.0) (2026-04-24)
 
 
