@@ -7,7 +7,7 @@ import com.android.tools.smali.dexlib2.AccessFlags
 /**
  * For targets 20.46 and later.
  */
-val BytecodePatchContext.playerParameterBuilderMethod by gettingFirstMethodDeclaratively {
+internal val BytecodePatchContext.playerParameterBuilderMethod by gettingFirstMethodDeclaratively {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     returnType("L")
     parameterTypes(
@@ -33,7 +33,7 @@ val BytecodePatchContext.playerParameterBuilderMethod by gettingFirstMethodDecla
 /**
  * For targets 20.26 and later.
  */
-val BytecodePatchContext.playerParameterBuilder2026Method by gettingFirstMethodDeclaratively {
+internal val BytecodePatchContext.playerParameterBuilder2026Method by gettingFirstMethodDeclaratively {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     returnType("L")
     parameterTypes(
